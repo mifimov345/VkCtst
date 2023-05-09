@@ -1,0 +1,36 @@
+﻿@page
+@model VkCtst.Pages.Searching.SearchIndexModel
+
+<h2>Список пользователей</h2>
+
+<table class="table table-striped">
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => item.id)</td>
+            <td>@Html.DisplayFor(m => item.login)</td>
+            <td>@Html.DisplayFor(m => item.password)</td>
+            <td>@Html.DisplayFor(m => item.created_date)</td>
+            @foreach (var ug in Model.Groups)
+            {
+                <td>@Html.DisplayFor(m => ug.code)</td>
+                <td>@Html.DisplayFor(m => ug.description)</td>
+            }
+            @foreach (var st in Model.States)
+            {
+                <td>@Html.DisplayFor(m => st.code)</td>
+                <td>@Html.DisplayFor(m => st.description)</td>
+            }
+        </tr>
+    }
+</table>
+<div>
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active":"")">
+                <a asp-asp-page="/pagination" asp-route-currentpage="@i" class="page-link">@i</a>
+            </li>
+        }
+    </ul>
+</div>

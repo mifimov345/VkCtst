@@ -1,0 +1,61 @@
+﻿@page
+@model VkCtst.Pages.Adding.AddIndexModel
+<br />
+<h2 class="text-info">Добавление пользователя</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+
+        <input type="hidden" asp-for="User_.id" />
+        <div class="text-danger" asp-asp-validation-summary="ModelOnly"></div>
+
+        <label asp-for="User_.login">Login</label>
+
+        <input asp-for="User_.login" class="form-control" />
+
+        <span asp-validation-for="User_.login" class="text-danger"></span>
+
+        <label asp-for="User_.password">Password</label>
+
+        <input asp-for="User_.password" class="form-control" />
+
+        <span asp-validation-for="User_.password" class="text-danger"></span>
+
+        <div class="form-group row">
+            <div class="col-8">
+                <label asp-for="User_Group_.code" class="control-label">Роль</label>
+            </div>
+            <div class="col-8">
+                <select asp-for="User_Group_.code" class="form-control" asp-items="@Model.UserG_state">
+                    <option value="">Выбор должности</option>
+                </select>
+                <span asp-validation-for="User_Group_.code" class="text-danger"/>
+            </div>
+            <br />
+        </div>
+
+        <label asp-for="User_Group_.description">Описание для роли пользователя</label>
+
+        <input asp-for="User_Group_.description" class="form-control" />
+        
+        <label asp-for="User_State_.description">Описание статуса пользователя</label>
+
+        <input asp-for="User_State_.description" class="form-control" />
+        <br/>
+
+        <div>
+            <div class="col-4">
+                <input type="submit" value="Создать"/>
+            </div>
+            <br/>
+            <div class="col-3">
+                <a asp-page="/Pages/Index" class="btn btn-success form-control">Назад</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

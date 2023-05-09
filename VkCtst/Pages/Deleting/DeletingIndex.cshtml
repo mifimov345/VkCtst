@@ -1,0 +1,83 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model VkCtst.Pages.Deleting.DeletingIndexModel
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Пользователи</h2>
+    </div>
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Users_.Count() > 0 && Model.State_.Contains("Active"))
+            {
+                <table>
+                    <tr>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().id">Id</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().login">Login</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().password">Password</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().created_date">Дата создания</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().user_group_id.code">Роль</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().user_group_id.description">Описание роли</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().user_state_id.code">Статус пользователя</label>
+                        </th>
+                        <th>
+                            <label asp-for="Users_.FirstOrDefault().user_state_id.description">Описание статуса</label>
+                        </th>
+                    </tr>
+                    @foreach (var user in Model.Users_)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => user.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => user.login)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => user.password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => user.created_date)
+                            </td>
+                            @foreach (var ug in Model.Groups)
+                            {
+                                <td>@Html.DisplayFor(m => ug.code)</td>
+                                <td>@Html.DisplayFor(m => ug.description)</td>
+                            }
+                            @foreach (var st in Model.States)
+                            {
+                                <td>@Html.DisplayFor(m => st.code)</td>
+                                <td>@Html.DisplayFor(m => st.description)</td>
+                            }
+                        </tr>
+                        <td>
+                            <button asp-page-handler="delete" asp-route-id="@user.id">Удалить</button>
+                        </td>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Нет незаблокированных пользователей</p>
+            }
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

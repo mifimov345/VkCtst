@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Стартовая страница";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Задание для ТехноТеста</h1>
+</div>
+<tr>
+    <td>
+        <button style="font-size:24px;color:cornflowerblue; height:100px;width:200px" onclick="window.location.href = '/adding/addindex';">Добавить пользователя</button>
+    </td>
+    <td>
+        <button style="font-size:24px;color:cornflowerblue; height:100px;width:200px" onclick="window.location.href = '/deleting/deletingindex';">Удалить пользователя</button>
+    </td>
+    <td>
+        <button style="font-size:24px;color:cornflowerblue; height:100px;width:200px" onclick="window.location.href = '/searching/searchindex';">Найти пользователя</button>
+    </td>
+</tr>
+
